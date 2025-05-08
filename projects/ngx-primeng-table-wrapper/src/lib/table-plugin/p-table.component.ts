@@ -25,18 +25,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   TableColumnsDef,
-} from './interfaces/integritable';
+} from './interfaces/p-table.interface';
 
-export function tableFactory(tableComponent: IntegritableComponent) {
+export function tableFactory(tableComponent: AppTableComponent) {
   return tableComponent.primengTable;
 }
 
 const COLUMNS_SELECTED_STATE_NAME = 'column-selected';
 
 @Component({
-    selector: 'app-integritable',
-    templateUrl: './integritable.component.html',
-    styleUrl: './integritable.component.css',
+    selector: 'app-table',
+    templateUrl: './p-table.component.html',
+    styleUrl: './p-table.component.css',
     imports: [
         FormsModule,
         CommonModule,
@@ -49,12 +49,12 @@ const COLUMNS_SELECTED_STATE_NAME = 'column-selected';
         {
             provide: Table,
             useFactory: tableFactory,
-            deps: [IntegritableComponent],
+            deps: [AppTableComponent],
         }
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class IntegritableComponent implements OnInit {
+export class AppTableComponent implements OnInit {
   @Input({ required: true }) value: any[] = [];
   @Input() cols: TableColumnsDef[] = [];
 

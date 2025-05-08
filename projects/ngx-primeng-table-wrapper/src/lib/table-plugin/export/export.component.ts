@@ -8,7 +8,7 @@ import { Table } from 'primeng/table';
     templateUrl: './export.component.html',
     styleUrl: './export.component.css'
 })
-export class IntegritableExportComponent {
+export class AppTableExportComponent {
   @Input({ required: true }) tableRef: Table | null = null;
   @Input() fileName = '';
 
