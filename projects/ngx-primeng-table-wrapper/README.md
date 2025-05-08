@@ -13,7 +13,7 @@ npm install ngx-primeng-table-wrapper
 
 ## Configure
 
-app.config.ts
+* app.config.ts
 ```ts
    ...
     provideAnimationsAsync(),
@@ -29,7 +29,7 @@ app.config.ts
   ...
 ```
 
-## Ussage
+## Usage
 
 * app.component.html
 ```html
