@@ -1,0 +1,99 @@
+<p-table
+    #primengTable
+    class="prime-tbl"
+    showGridlines
+    stripedRows
+    [value]="value"
+    [columns]="selectedColumns"
+    size="small"
+    [resizableColumns]="true"
+    columnResizeMode="expand"
+    [(selection)]="selectedRows"
+    [dataKey]="dataKey || undefined"
+    [lazy]="lazy"
+    [paginator]="paginator"
+    currentPageReportTemplate="{first} to {last} of {totalRecords} entries"
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [showCurrentPageReport]="true"
+    (onLazyLoad)="loadData($event)"
+    [scrollable]="true"
+    [rowHover]="true"
+    paginatorDropdownAppendTo="body"
+    [reorderableColumns]="reorderableColumns"
+    stateStorage="local"
+    [stateKey]="stateKey || undefined"
+    (selectionChange)="onSelectionChange($event)"
+    (onStateSave)="onStateChange($event)"
+    (onFilter)="onChangeFilter($event)"
+>
+    <ng-template #caption *ngIf="showFilterColumns">
+        <span style="font-weight: bold;"
+            >Selected Columns ({{ selectedColumns.length }}):</span
+        >
+        <p-multiselect
+            display="chip"
+            [options]="cols"
+            [(ngModel)]="selectedColumns"
+            optionLabel="header"
+            selectedItemsLabel="{0} columns selected"
+            [style]="{ 'max-width': '300px' }"
+            placeholder="Choose Columns"
+            (onChange)="changeColumnState()"
+        ></p-multiselect>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+        <ng-container
+            *ngTemplateOutlet="
+                headerTemplate || defaultHeaderTemplate;
+                context: { $implicit: columns, value: value }
+            "
+        ></ng-container>
+    </ng-template>
+
+    <ng-template
+        pTemplate="body"
+        let-rows
+        let-columns="columns"
+        let-expanded="expanded"
+        let-rowIndex="rowIndex"
+    >
+        <ng-container
+            *ngTemplateOutlet="
+                bodyTemplate || defaultBodyTemplate;
+                context: {
+                    $implicit: rows,
+                    columns: columns,
+                    expanded: expanded,
+                    rowIndex: rowIndex
+                }
+            "
+        ></ng-container>
+    </ng-template>
+
+    <ng-template #expandedrow let-row>
+        <ng-container
+            *ngTemplateOutlet="expandedTemplate; context: { $implicit: row }"
+        ></ng-container>
+    </ng-template>
+
+    <ng-template #emptymessage>
+        <ng-container *ngTemplateOutlet="emptyTemplate"></ng-container>
+    </ng-template>
+
+    <!-- Default Header -->
+    <ng-template #defaultHeaderTemplate let-columns let-value="value">
+        <tr>
+            <th *ngFor="let header of value[0] | keyvalue">{{ header.key }}</th>
+        </tr>
+    </ng-template>
+
+    <!-- Default Body -->
+    <ng-template #defaultBodyTemplate let-rows>
+        <tr>
+            <td *ngFor="let row of rows | keyvalue">{{ row.value }}</td>
+        </tr>
+    </ng-template>
+</p-table>
