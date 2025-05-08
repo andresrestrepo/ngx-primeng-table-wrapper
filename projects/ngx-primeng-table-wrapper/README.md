@@ -15,6 +15,9 @@ npm install ngx-primeng-table-wrapper
 
 * app.config.ts
 ```ts
+   import {providePrimeNG} from 'primeng/config'
+   import Aura from '@primeng/themes/aura'
+   import {provideAnimationsAsync} from '@angular/platform-browser/animations/async'
    ...
     provideAnimationsAsync(),
     providePrimeNG({
