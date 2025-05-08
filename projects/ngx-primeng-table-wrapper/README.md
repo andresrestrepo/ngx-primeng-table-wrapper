@@ -2,6 +2,75 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
 
+## Primeng Table wrapper
+Library to centralice primeng table
+
+## Install
+
+```bash
+npm install ngx-primeng-table-wrapper
+```
+
+## Configure
+
+app.config.ts
+```ts
+   ...
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: '.fake-dark-selector',
+          darkMode: false
+        }
+      }
+    })
+  ...
+```
+
+## Ussage
+
+* app.component.html
+```html
+  <app-table [value]="data"></app-table>
+```
+* app.component.ts
+```ts
+...
+import { AppTableComponent } from 'ngx-primeng-table-wrapper'
+...
+@Component({
+   ...
+  imports: [AppTableComponent],
+  ...
+})
+...
+
+export class AppComponent {
+...
+   data = [
+      {
+         id: 226186,
+         invoice_id: 29695,
+         filename: 'filename1.txt',
+         mimetype: 'application/pdf',
+         filetype: 6,
+         s3_key: null,
+         status: null,
+         mc_filetemplate_mapping_id: null,
+         parent_file_id: null,
+         combine_id: null,
+      }
+   ]
+...
+}
+
+```
+
+
+
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
