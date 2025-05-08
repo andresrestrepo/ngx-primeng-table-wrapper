@@ -1,0 +1,1 @@
+# ngx-primeng-table-wrapper
